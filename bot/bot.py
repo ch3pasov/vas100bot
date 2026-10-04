@@ -29,6 +29,8 @@ def vas100(seed, random_seed):
     e = b1 - 2 * b0
     x = 2 ** e
     won = re.match(r"^\d+(\.0{0,60}[^0]{0,2})?", str(x) if x >= 1 else f'{x:.50f}').group(0)
+    if float(won) == 0:
+        won = f'{x:.2e}'
     randomness = "рандомный (пустой) " if random_seed else ""
 
     return e, seed, digest[0:13], f'Симулятор игры Василия, вернется <b>x{won}</b> ставки, {randomness}сид:\n\n<code>{html.escape(seed)}</code>\n\n' + \
